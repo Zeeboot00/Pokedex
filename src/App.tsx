@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 import PokemonCard from "./components/PokemonCard";
+import NavBar from "./components/NavBar";
 
 const pokemonList = [
   {
@@ -28,29 +29,19 @@ const pokemonList = [
     name: "mew",
     imgSrc:
       "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png",
-  }
+  },
 ];
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const incremente = () => {
-    if (count < pokemonList.length - 1) {
-      setCount(count + 1);
-    }
-  };
-
-  const decremente = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
-
+  const [pokemonIndex, setPokemonIndex] = useState(0);
   return (
     <div>
-      <PokemonCard pokemon={pokemonList[count]} />
-      <button onClick={decremente}>Précédent</button>
-      <button onClick={incremente}>Suivant</button>
+      <PokemonCard pokemon={pokemonList[pokemonIndex]} />
+      <NavBar
+        pokemonIndex={pokemonIndex}
+        setPokemonIndex={setPokemonIndex}
+        pokemonList={pokemonList}
+      />
     </div>
   );
 }
