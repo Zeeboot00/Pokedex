@@ -9,26 +9,22 @@ interface NavBarProps {
   pokemonList: Pokemon[];
 }
 
-function NavBar({ pokemonIndex, setPokemonIndex, pokemonList }: NavBarProps) {
-  const incremente = () => {
-    if (pokemonIndex < pokemonList.length - 1) {
-      setPokemonIndex(pokemonIndex + 1);
-    }
+function NavBar({ setPokemonIndex, pokemonList }: NavBarProps) {
+  const displayGoodPokemon = (toto) => {
+    setPokemonIndex(toto);
   };
 
-  const decremente = () => {
-    if (pokemonIndex > 0) {
-      setPokemonIndex(pokemonIndex - 1);
-    }
-  };
   return (
     <>
-      <button type="button" onClick={decremente}>
-        Précédent
-      </button>
-      <button type="button" onClick={incremente}>
-        Suivant
-      </button>
+      {pokemonList.map((object, toto) => (
+        <button
+          type="button"
+          key={object.name}
+          onClick={() => displayGoodPokemon(toto)}
+        >
+          {object.name}
+        </button>
+      ))}
     </>
   );
 }
